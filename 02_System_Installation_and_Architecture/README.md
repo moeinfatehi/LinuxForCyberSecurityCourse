@@ -1,0 +1,2 @@
+# Overview of 02_System_Installation_and_Architecture
+This module focuses on the installation and architectural fundamentals of Linux systems, specifically covering Debian and Red Hat. Detailed lectures provide insights into system architecture and secure installation practices.
