@@ -28,17 +28,6 @@ Implement full disk encryption on a Linux installation.
 5. Test the system by rebooting and verifying that disk encryption functions as expected.
 6. Submit a report on the setup process and any challenges encountered.
 
-## Assignment 3: System Architecture Research
-
-### Objective
-Research and present the Linux kernel architecture and its major components.
-
-### Instructions
-1. Investigate how the Linux kernel manages processes, memory, devices, and file systems.
-2. Prepare a presentation that outlines these components and explains their roles and interactions within the system.
-3. Include diagrams to illustrate the kernel architecture and component interactions.
-4. Present your findings to the class or group.
-
 ## Conclusion
 
 These assignments are intended to provide hands-on experience with Linux installation and to foster an understanding of the underlying architecture that supports Linux system operations. Each task focuses on practical skills that are crucial for anyone aspiring to work with Linux professionally.
