@@ -10,9 +10,9 @@
 
 ### Lectures
 
-- [Networking Basics and Advanced Configuration](Lectures/05_Networking_Basics_and_Advanced_Configuration.md)
-- [Configuring and Securing Firewalls](Lectures/06_Configuring_and_Securing_Firewalls.md)
-- [Setting Up Secure Remote Connections](Lectures/07_Setting_Up_Secure_Remote_Connections.md)
+- [Networking Basics and Advanced Configuration](Lectures/01_Networking_Basics_and_Advanced_Configuration.md)
+- [Configuring and Securing Firewalls](Lectures/02_Configuring_and_Securing_Firewalls.md)
+- [Setting Up Secure Remote Connections](Lectures/03_Setting_Up_Secure_Remote_Connections.md)
 
 ### Assignments
 
