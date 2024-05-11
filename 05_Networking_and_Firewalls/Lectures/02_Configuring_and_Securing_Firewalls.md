@@ -2,6 +2,37 @@
 
 This lecture explores the key concepts and practical implementations of firewalls in Linux. Understanding how to configure and manage firewalls is essential for securing network interfaces and controlling the flow of network traffic.
 
+## Preparing Your Ubuntu System
+
+Before configuring firewalls, ensure that you have the necessary tools installed on your Ubuntu system. Here are the installation steps for the primary firewall management utilities used in this lecture: `iptables`, `firewalld`, and `nftables`.
+
+### Installing iptables
+
+`iptables` is installed by default on most Linux distributions, including Ubuntu. If you need to install it or ensure it's up to date, you can use the following command:
+
+```bash
+sudo apt-get update
+sudo apt-get install iptables
+```
+
+### Installing firewalld
+
+`firewalld` is not installed by default on Ubuntu, but it can be easily installed via the package manager:
+
+```bash
+sudo apt-get update
+sudo apt-get install firewalld
+```
+
+### Installing nftables
+
+`nftables` is a newer tool that aims to replace `iptables`. It may not be pre-installed on older versions of Ubuntu:
+
+```bash
+sudo apt-get update
+sudo apt-get install nftables
+```
+
 ## Introduction to Firewalls
 
 A firewall is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. In Linux, several tools can be used to configure and manage firewalls, providing robust defense mechanisms against network-based threats.
