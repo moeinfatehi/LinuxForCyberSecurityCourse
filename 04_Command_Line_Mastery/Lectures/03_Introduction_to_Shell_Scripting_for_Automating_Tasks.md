@@ -88,12 +88,17 @@ Loops allow you to repeat actions. The most common loops in shell scripting are 
 Case statements simplify complex conditional logic and are easier to read than multiple `if-elif` statements.
 
 ```bash
+
+#!/bin/bash
+input=$1  # Assign the first argument to the variable input
+
 case $input in
   1) echo "You selected option 1";;
   2) echo "You selected option 2";;
   3) echo "You selected option 3";;
   *) echo "Invalid option selected";;
 esac
+
 ```
 ## 3. Functions and Modular Scripting
 
