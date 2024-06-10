@@ -37,50 +37,12 @@ SSH is the standard for secure remote administration of Linux systems. It provid
     ssh-copy-id -i ~/.ssh/id_rsa.pub user@hostname
     ```
 
-### SSH Tunneling and Port Forwarding
-
-SSH tunneling allows you to forward a port on the local machine to a port on the remote server securely.
-
-- **Local Forwarding**: Access remote resources securely through your local machine.
-  ```bash
-  ssh -L localPort:localhost:remotePort user@remoteHost
-  ```
-
-- **Remote Forwarding**: Expose local services to a remote server.
-  ```bash
-  ssh -R remotePort:localhost:localPort user@remoteHost
-  ```
-
-## Virtual Private Networks (VPNs)
-
-VPNs extend a private network across a public network, enabling users to send and receive data as if their computing devices were directly connected to the private network.
-
-### Setting Up OpenVPN
-
-- **Installing OpenVPN**:
-  ```bash
-  sudo apt-get install openvpn
-  ```
-
-- **Configuring VPN**:
-  - Obtain configuration files from your VPN provider.
-  - Start the VPN connection:
-    ```bash
-    sudo openvpn --config myvpn.ovpn
-    ```
-
 ## Other Secure Protocols
 
 - **Secure Copy (SCP)**:
   SCP is used for securely transferring files between hosts on a network.
   ```bash
   scp localFile user@remoteHost:/remoteDirectory
-  ```
-
-- **Secure FTP (SFTP)**:
-  SFTP is used for secure file transfer over SSH.
-  ```bash
-  sftp user@remoteHost
   ```
 
 ## Conclusion
