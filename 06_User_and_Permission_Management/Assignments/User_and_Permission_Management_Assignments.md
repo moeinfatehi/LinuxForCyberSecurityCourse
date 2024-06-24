@@ -11,14 +11,9 @@ Demonstrate your ability to create and manage user accounts and groups in Linux.
 3. Change the username `johndoe` to `johnsmith`.
 4. Delete the user `johnsmith` and ensure their home directory is removed.
 
-### Commands
-```bash
-sudo useradd -m -s /bin/bash johndoe
-sudo groupadd developers
-sudo usermod -aG developers johndoe
-sudo usermod -l johnsmith johndoe
-sudo userdel -r johnsmith
-```
+### Submission
+- Provide a script named `user_management.sh` that performs all the tasks mentioned above.
+- Ensure the script includes comments explaining each step.
 
 ## Assignment 2: File Permissions Management
 
@@ -31,14 +26,9 @@ Manage file permissions to ensure proper access control.
 3. Add the setgid bit to a directory named `shared` to ensure new files inherit the group.
 4. Set an ACL on `example.txt` to grant read permission to a user named `alice`.
 
-### Commands
-```bash
-touch ~/example.txt
-chmod 640 ~/example.txt
-mkdir ~/shared
-chmod g+s ~/shared
-setfacl -m u:alice:r ~/example.txt
-```
+### Submission
+- Provide a script named `file_permissions.sh` that performs all the tasks mentioned above.
+- Ensure the script includes comments explaining each step.
 
 ## Assignment 3: Advanced Permissions and ACLs
 
@@ -50,15 +40,9 @@ Utilize advanced file permissions and Access Control Lists (ACLs) for fine-grain
 2. Set a default ACL on the `project` directory so that all new files are readable by the group `developers`.
 3. Verify the ACL settings on the `project` directory and a new file created within it.
 
-### Commands
-```bash
-mkdir ~/project
-chmod +t ~/project
-setfacl -d -m g:developers:r ~/project
-getfacl ~/project
-touch ~/project/newfile.txt
-getfacl ~/project/newfile.txt
-```
+### Submission
+- Provide a script named `advanced_permissions.sh` that performs all the tasks mentioned above.
+- Ensure the script includes comments explaining each step.
 
 ## Assignment 4: Configuring Sudo
 
@@ -70,17 +54,8 @@ Configure sudo privileges to allow secure and controlled command execution.
 2. Allow the group `developers` to restart the Apache service without a password prompt.
 3. Restrict the user `limiteduser` to only run the `systemctl restart apache2` command with sudo.
 
-### Commands
-```bash
-sudo visudo
-```
-- Add the following lines:
-  ```plaintext
-  adminuser ALL=(ALL:ALL) ALL
-  %developers ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart apache2
-  limiteduser ALL=(ALL) /usr/bin/systemctl restart apache2
-  ```
-
-## Submission Guidelines
-
-Submit a report documenting the commands used for each task, the output, and screenshots where applicable. Provide explanations for each command and the purpose of the settings configured.
+### Submission
+- Provide a report named `sudo_configuration_report.md` that includes:
+  - The changes made to the sudoers file.
+  - Explanations for each configuration and its purpose.
+  - Steps to verify the configuration.
