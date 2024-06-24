@@ -30,15 +30,6 @@ Configure SSH for secure remote access with key-based authentication.
 2. Disable password authentication for SSH on the server.
 3. Test SSH access using the key pair to verify the configuration.
 
-## Assignment 4: VPN Configuration with OpenVPN
-
-### Objective
-Set up and verify a secure VPN connection using OpenVPN.
-
-### Tasks
-1. Install and configure OpenVPN on the server.
-2. Create client configuration files and connect using a client machine.
-3. Verify that traffic is routed through the VPN by checking the IP address on the client.
 
 ## Submission Guidelines
 
