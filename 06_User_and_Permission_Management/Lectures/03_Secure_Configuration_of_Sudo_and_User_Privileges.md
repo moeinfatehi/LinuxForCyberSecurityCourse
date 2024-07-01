@@ -101,10 +101,62 @@ Regularly review the sudoers file and user privileges to ensure they are up-to-d
 
 Enable sudo logging to monitor the commands executed by users with sudo privileges. This helps in auditing and detecting unauthorized activities.
 
-- Ensure sudo logs are enabled in `/etc/sudoers`:
-  ```bash
-  Defaults        logfile="/var/log/sudo.log"
-  ```
+#### 1. Configure Sudo to Log Commands
+
+First, we need to edit the `sudoers` file to enable logging. The `sudoers` file controls the behavior of the sudo command. To safely edit this file, use the `visudo` command. This command checks for syntax errors to prevent configuration issues that could lock you out of sudo access.
+
+Open the `sudoers` file with the following command:
+
+```bash
+sudo visudo
+```
+
+Add the following line to the `Defaults` section to enable logging:
+
+```plaintext
+Defaults        logfile=/var/log/sudo.log
+```
+
+This configuration tells sudo to log all commands to the file `/var/log/sudo.log`.
+
+#### 2. Create and Set Permissions for the Log File
+
+Next, if the log file does not already exist, you need to create it and set the appropriate permissions. This ensures that the log file is secure and only accessible by the root user.
+
+Create the log file with the following command:
+
+```bash
+sudo touch /var/log/sudo.log
+```
+
+Set the permissions of the log file so that it is readable and writable only by the root user:
+
+```bash
+sudo chmod 600 /var/log/sudo.log
+```
+
+#### 3. Verify Logging
+
+After configuring the `sudoers` file and creating the log file, you can test the logging functionality by executing a sudo command and then checking the log file to ensure the command was logged.
+
+Run a test sudo command, such as listing the contents of the root directory:
+
+```bash
+sudo ls /root
+```
+
+Then, check the log file to see if the command was logged:
+
+```bash
+sudo cat /var/log/sudo.log
+```
+
+You should see an entry in the log file similar to the following:
+
+```plaintext
+Jul  1 12:34:56 hostname sudo: user : TTY=pts/1 ; PWD=/home/user ; USER=root ; COMMAND=/bin/ls /root
+```
+
 
 ## Example Sudoers Configuration
 
