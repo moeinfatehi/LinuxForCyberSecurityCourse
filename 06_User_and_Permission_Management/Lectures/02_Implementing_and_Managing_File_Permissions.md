@@ -91,38 +91,79 @@ chmod g+s mydir
 
 #### Sticky Bit
 
-The sticky bit (`t`) on a directory restricts file deletion to the file's owner, the directory's owner, or the root user.
+The sticky bit is a permission bit that is set on directories to restrict file deletion. When the sticky bit is set on a directory, only the file owner, the directory owner, or the root user can delete or rename the files within that directory. This is commonly used on directories like `/tmp` to prevent users from deleting each other's files.
 
-Example:
+#### Example: Using the Sticky Bit
+
+1. Create a directory and set the sticky bit.
+   ```bash
+   mkdir /tmp/shared
+   chmod +t /tmp/shared
+   ```
+
+2. Verify the sticky bit is set. The sticky bit is represented by a `t` at the end of the permission string.
+   ```bash
+   ls -ld /tmp/shared
+   drwxrwxrwt 2 root root 4096 Jan 1 12:00 /tmp/shared
+   ```
+
+3. Create two files within the directory as two different users.
+   ```bash
+   su - user1
+   touch /tmp/shared/file1
+   su - user2
+   touch /tmp/shared/file2
+   ```
+
+4. Attempt to delete each other's files.
+   ```bash
+   su - user1
+   rm /tmp/shared/file2
+   rm: cannot remove '/tmp/shared/file2': Operation not permitted
+
+   su - user2
+   rm /tmp/shared/file1
+   rm: cannot remove '/tmp/shared/file1': Operation not permitted
+   ```
+
+In this example, `user1` and `user2` cannot delete each other's files because the sticky bit is set on the `/tmp/shared` directory.
+
+### Access Control Lists (ACLs)
+
+ACLs provide a more flexible permission mechanism for file systems by allowing you to set permissions for specific users or groups beyond the traditional owner, group, and others model. 
+
+To use ACLs, you need to ensure the `acl` package is installed on your system.
+
+#### Installing the ACL Package
+
+On Ubuntu, you can install the `acl` package using the following command:
 ```bash
-chmod +t /tmp
+sudo apt-get install acl
 ```
 
-## Access Control Lists (ACLs)
+#### Example: Setting and Viewing ACLs
 
-ACLs provide fine-grained control over file permissions, allowing specific permissions for individual users or groups.
+1. Create a file and set an ACL to grant read permissions to a specific user.
+   ```bash
+   touch myfile.txt
+   setfacl -m u:alice:r myfile.txt
+   ```
 
-### Viewing ACLs
+2. Verify the ACL settings.
+   ```bash
+   getfacl myfile.txt
+   # file: myfile.txt
+   # owner: user
+   # group: group
+   user::rw-
+   user:alice:r--
+   group::---
+   mask::r--
+   other::---
+   ```
 
-Use the `getfacl` command to view ACLs:
-```bash
-getfacl myfile.txt
-```
+In this example, `alice` is granted read permissions on `myfile.txt`, regardless of the file's owner, group, and other permissions.
 
-### Setting ACLs
-
-Use the `setfacl` command to set ACLs:
-- **Add ACL**:
-  ```bash
-  setfacl -m u:username:rwx myfile.txt
-  ```
-  - `u:username:rwx`: Grants read, write, and execute permissions to the user `username`.
-
-- **Remove ACL**:
-  ```bash
-  setfacl -x u:username myfile.txt
-  ```
-  - `u:username`: Removes the ACL entry for the user `username`.
 
 ## Conclusion
 
