@@ -1,6 +1,3 @@
-Here's the updated main README file for the project, considering the content has been restructured and the focus has shifted.
-
-```markdown
 # Linux for Cyber Security Course
 
 Welcome to the "Linux for Cyber Security Course" repository. This course is designed to introduce students to the world of Linux with a specific focus on its application in cybersecurity. Through this course, students will gain foundational knowledge of Linux, its distributions, and security features, while also learning to manage and secure Linux environments effectively.
