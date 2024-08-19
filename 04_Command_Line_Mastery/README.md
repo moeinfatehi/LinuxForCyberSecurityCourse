@@ -39,6 +39,6 @@ Your contributions to improve or expand this module are welcome. If you have sug
 
 ## Contact
 
-For more information or queries regarding this module, please [create an issue](https://github.com/username/LinuxForCyberSecurityCourse/issues) in this repository.
+For more information or queries regarding this module, please [create an issue](https://github.com/moeinfatehi/LinuxForCyberSecurityCourse/issues) in this repository.
 
 Thank you for joining this module. We hope you find it informative and instrumental in developing your command line skills for cybersecurity and system administration.

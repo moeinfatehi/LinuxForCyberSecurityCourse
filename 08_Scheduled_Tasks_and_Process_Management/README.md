@@ -26,4 +26,4 @@ Please submit a pull request or create an issue for suggestions or enhancements.
 
 ## Contact
 
-For more information or queries, please [create an issue](https://github.com/username/LinuxForCyberSecurityCourse/issues) in this repository.
+For more information or queries, please [create an issue](https://github.com/moeinfatehi/LinuxForCyberSecurityCourse/issues) in this repository.
