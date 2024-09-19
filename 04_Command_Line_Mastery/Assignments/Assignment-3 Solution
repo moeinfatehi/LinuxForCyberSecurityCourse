@@ -11,15 +11,16 @@ sudo apt-get update && sudo apt upgrade || echo "Failed to update the system " &
 log_messages "system update finished
 # Check for the temporary file and remove the files which are older than 7 days
 log_messages "Start clearing temporary files"
-temp_files= ("/temp" "/var/temp")
+temp_files=("/temp" "/var/temp")
 for ((i=0 ; i< ${#temp_files[*]}; i++)) 
 do
   if [[ -d $i ]]
   then 
-  find $i -type f -mtime $days -exec rm -f {} \; -print | while read -r file: do log_messages "Removed files $file"
-  find $i -type d -empty -exec rm -r {} \; -print | while read -r dir; do log_messages "Removed Files $dir"
+  find $i -type f -mtime $days -exec rm -f {} \; -print | while read -r file: do log_messages "Removed files $file" done
+  find $i -type d -empty -exec rm -r {} \; -print | while read -r dir; do log_messages "Removed Files $dir" done
   else
   log_messages "No temporary files and directory available" && exit 1
+  fi
 done
 echo "temporary files removed sucessfully"
 log_messages "Temporary files are removed sucessfully"
