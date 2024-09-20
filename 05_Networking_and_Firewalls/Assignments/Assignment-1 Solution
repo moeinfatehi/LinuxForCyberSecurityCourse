@@ -1,0 +1,18 @@
+#Check for the assigned ip by the dhcp server
+ifconfig
+#Firstly we have to shut down the interface to change its configuration 
+sudo ifconfig eth0 down 
+#Set up a static ip address to any interface of your vm, and here I am taking the eth0 interface
+sudo ip addr add 192.168.11.130/24 dev eth0
+#Now set up the default gateway i.e the router address to which we are connected to internet
+sudo ip route add default via 192.168.11.2
+#At last we have to assigned the DNS Server which can't be done through command line 
+#For dns we have to manually enter the dns server in the etc/resolv.conf
+sudo sh -c 'echo "nameserver 8.8.8.8 " > etc/resolv.conf
+#After static ip assignment enable the interface
+sudo ifconfig eth0 up
+#Check for the current ip configuation and store it into a file in current directory
+ifconfig > network_configuration.txt
+#Test the connectivity of the network interface 
+ping google.com
+# We get the ping respose,ensure thant we are connected to the internet.
