@@ -1,0 +1,18 @@
+#!/bin/bash
+#Create a file example.txt in your home directory
+cd
+touch example.txt
+#Set File permission owner can read and write, group member can read only and other user has no permission
+chmod 640 example.txt
+#To verify the Permission
+ls -l
+#Now set the setgid bit to a directory named shared so that it file inherit the group privilage for execution
+mkdir shared
+chmod g+s shared
+#Using acl grant read permission to a user alice
+setfacl -m u:alice:r example.txt
+#To verify
+getfacl example.txt
+#Save this file as file_permission.sh and execute it as bash file_permission.sh (The file must have the execute permission for current user)
+#if not 
+chmod u+x file_permission.sh
