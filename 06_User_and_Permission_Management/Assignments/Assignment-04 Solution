@@ -1,0 +1,30 @@
+#1-> Grant the adminuser to full sudo privilage -> for that we had add this user to the sudo group because the sudo group had the 
+#grant all root privilage with the sudo command
+sudo visudo
+#It must contains an entry for %sudo ALL=(ALL:ALL) ALL for the sudo group if not add this at the group privilage section
+#Now add this user to sudo group if the user not present create it first using
+#sudo useradd -m adminuser
+#sudo passwd adminuser
+sudo usermod -aG sudo adminuser
+#Now the admin user had the full sudo privilage with sudo command
+
+#2 -> Allow the developers group to restart the apache2 service
+#for this the developers groups must be exist if not then create it
+sudo groupadd developers
+#Now allow the developers group member to grant permission to execute restart apache2 service command without password
+sudo visudo
+#add
+%developers ALL=(ALL) NoPASSWD: /usr/bin/Systemclt restart apache2
+#save this file and each member of the developers group can execute restart apache2 service with sudo and without password
+
+#3 ->Restrict the user limiteduser to only run the systemctl restart apache2 command with sudo.
+#for this you must have the limiteduser present and open the /etc/sudoers
+sudo visudo
+#add this entry
+limiteduser ALL=(root) NOPASSWD: /usr/bin/sytemctl restart apache2
+#save and exit the file and login with limiteduser to execute the command and also check for other sudo commands are being restricted
+su limiteduser
+systemctl restart apache2
+
+
+
