@@ -1,0 +1,15 @@
+#!/bin/bash
+#Create a directory project and set the sticky bit so that only the file owner,dirt owner and the root user can delete that file
+mkdir project
+chmod +t project
+#check for the file permission as ls -l
+#set acl configuration such that all new files in project dirt are readable by the group developers and is applicatble to all new 
+#files in that directory
+#set -d for default acl to all new files in project
+setfacl -d -m g:developers:r project
+#Verify the default acl for new files
+cd project
+touch newfile.txt
+getfacl newfile.txt
+#save this file as advance_permission.sh and execute it as bash advance_permission.sh
+
