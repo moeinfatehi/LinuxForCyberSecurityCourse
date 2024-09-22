@@ -40,5 +40,3 @@ Enhance your learning experience with additional materials that complement the l
 - Linux architecture basics
 - Secure Linux setup
 - Linux filesystem explanation
-
-This README serves as your navigation hub for the "System Installation and Architecture" module, providing quick access to all educational content. Through this module, you will build the skills necessary to install, configure, and secure Linux systems effectively.
