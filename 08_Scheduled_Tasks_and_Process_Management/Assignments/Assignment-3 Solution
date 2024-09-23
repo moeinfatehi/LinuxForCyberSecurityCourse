@@ -1,0 +1,23 @@
+#!/bin/bash
+#List all the running process using ps command and save the output in ps_output.txt
+ps > ps_output.txt
+#As the htop tool is not defaultly availabe in linux, So we first need to get it install
+sudo apt-get update
+sudo apt-get install htop
+#To manage the process using htop(as it provide real-time running processes and it has a user-friendly interface) 
+htop
+#Let start a apache service to create a temporary process
+sudo service apache2 start
+#To find the process id of apache2 base process
+pid=$(pidof apache2 | awk '{print $NF}'
+#To kill the apache2 process
+sudo kill pid
+#To change the priority of running process
+#For this lets create a dummy/temp process by executing a script present in my home directory
+./script.sh
+#To find the process id of our running script process
+id=$(ps -ef | grep "script.sh" )
+#To change the nice value from 0 to -10 as default processes has 0 nice value(priority)
+renice -10 -p id
+#Save this file as process_management.sh and execute as bash process_management.sh
+
