@@ -1,0 +1,46 @@
+#!/bin/bash
+#Enable automatic updates on your system i.e the system automatically update a packages as long as the new version of package
+#is available for that distribution
+#for debian based distribution -> install and configure the unattended-upgrades package
+sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure unattended-upgrades
+#for RHEL and fedora based distribution -> install and run services of yum-cron tool
+sudo yum install yum-cron
+sudo systemclt enable yum-cron
+suod systemclt start yum-cron
+
+#If we want to do system updates manually(Generally Prefered)
+#For debian based distribution
+sudo apt-get update
+sudo apt-get upgrade
+#For RHEL and fedora based distribution
+sudo yum update
+
+#To verify the integrity of installed package like say wget
+#For debian based distribution
+sudo dpkg-sig --verify curl
+#For RHEL and fedora based system
+rpm -V curl
+
+#Install a snap package let say curl
+#First we need to install the snap tool then enable and start it
+sudo apt-get install snapd
+#Enable and start its services
+sudo systemctl enable snapd
+sudo systemctl start snapd
+#Now extabilise connection between snapstore and your system
+sudo systemctl enable --now snapd.socket 
+#Install curl
+sudo snap install curl
+
+#Install a flatpak package  let say GIMP
+#First we need to install the flatpack repo tool
+sudo apt-get install flatpak
+#Adding flatpak repo
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak install flathub org.gimp.GIMP
+#Save this file as secure_updates.sh while commenting the commannds which are not specific for your distribution
+#and run it as bash secure_updates.sh (be provide the executeable permission to the file).
+
+
+
