@@ -1,0 +1,27 @@
+#!/bin/bash
+#First of all we ensure that the system monitoring tool package is installed in our linux machine 
+#To check it -> this command should return a path 
+which sar
+#If the sysstat tool is not installed then install it by -> for debian based system
+sudo apt-get update 
+sudo apt-get install sysstat
+#After installation start running this tool
+systemctl start sysstat
+#Using vmstat command monitor the system performance for 1 minute with 5-second intervals and store the outpute in vmstat_output.txt file
+vmstat 5 12 > vmstat_output.txt
+#Using iostat command  monitor the disk I/O statistics every 10 seconds for 1 minute and store its output in iostat_output.txt
+iostat 10 6 > iostat_output.txt
+#Check for the htop tool is available or not
+htop --version
+#If not installed then intall it by
+#For debian based system
+sudo apt-get update
+sudo apt-get intall htop
+#Running htop and take a screenshot of it showing the cpu and disk usuage via a scrot tool
+#Install scrot if not present already 
+sudo apt-get update 
+sudo apt-get install scrot
+htop & scrot htop_screenshot.png
+#Using mpstat command to monitor cpu usuage per core every 5 sec for 1 min and store the output in mpstat_output.txt
+mpstat 5 12 > mpstat_output.txt
+#Save this file as system_monitoring.sh and enjoy...
