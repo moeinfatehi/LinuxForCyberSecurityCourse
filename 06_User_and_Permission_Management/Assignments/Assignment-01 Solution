@@ -1,0 +1,12 @@
+#!/bin/bash
+#Adding a new user johndoe with home directory and default shell as /bin/bash
+useradd -m -c "This is a test user" -s /bin/bash
+#Create a new group developer 
+groupadd developers
+#Add user johndoe to the an additional group developers
+usermod -aG developers johndoe
+#change the username to johnsmith
+usermod -l johnsmith johndoe
+#Deleting the user along with its home directory
+userdel -r johnsmith
+#save this file as user_management.sh and execute it as bash user_management.sh

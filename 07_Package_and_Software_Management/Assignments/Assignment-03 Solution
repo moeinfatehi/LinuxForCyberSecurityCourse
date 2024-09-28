@@ -1,0 +1,20 @@
+#!/bin/bash
+#Download the source code of wget-1.21.1 from its official website using wget command
+wget https://ftu.gnu.org/gnu/wget-1.21.1.tar.gz
+#Uncompress and extract the downloaded .tar.gz file in current diretory
+tar -xzvf wget-1.21.1.tar.gz
+#Now a wget-1.21.1 diretory is available in current working diretory
+#Move inside wget-1.21.1
+cd wget-1.21.1
+#Check for the necessary dependencies and build environment running ./configure file
+./configure
+#If this file is executed successfully then you have the required environment to setup wget tool
+#Now compile the souce code into machine code using make command
+make 
+#Now after successful execution of make command, the binary code is generated and now we have to copy the binary(machine) code
+#in our system /binary files i.e system path so that it get executed by command line.
+make install
+#Now the source and compiled and its path is set up in our system binary
+#Now we can verify its installation
+wget --version
+#Now save this file as install_from_source.sh and execute as bash install_from_source.sh

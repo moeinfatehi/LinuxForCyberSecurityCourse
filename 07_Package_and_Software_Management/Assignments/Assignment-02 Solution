@@ -1,0 +1,21 @@
+#!/bin/bash
+#Install htop package using yum
+sudo yum install htop
+#Remove the htop package
+sudo yum remove htop
+#Update all installed package to their latest version
+sudo yum update
+#Add a custom repository by adding .repo in etc/yum.repos.d/
+#To add a new repository add a new file in /etc/yum.repos.d diretory with .repo extension
+touch /etc/yum.repos.d/example.repo
+#Now add the repository details in that file
+sudo nano /etc/yum.repos.d/New_repository.repo
+#Adding repository details
+name=New_repository Repository
+baseurl=http://New_repository.com/repo
+enabled=1
+gpgcheck=1
+gpgkey=http://New_repository/repo/RPM-GPG-KEY-New_repository
+#Listing all currently configured repositories
+sudo yum repolist
+#save this file as yum_management.sh and run as bash yum_management.sh

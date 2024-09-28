@@ -1,0 +1,20 @@
+Assignment 1 Solution
+#Firstly check for your currnet directory 
+pwd
+#From anywhere, you want to go to your home directory 
+cd
+# then, create Directory
+mkdir LinuxPractices
+#creating a file inside this directory
+cd LinuxPractices
+touch practice.txt
+# Adding/Writing content to newly created file using vi editor
+vi practice.txt
+Press I for insert test
+"This is a test file"
+Press ESC to quit from Insert mode
+Press :wq to save and quit from vi editor
+# Listing detail information of files in LinuxPractices dirtectory and redirect this o/p to detail.txt
+ls -ltr > detail.txt
+# Display content of practice.txt
+cat practice.txt

@@ -1,0 +1,33 @@
+#!/bin/bash
+days=7
+#for log the operation into system log
+log_messages() {
+  message="$1"
+  echo "$(date "+%Y-%m-%d %H:%M:%S") $message" | logger
+}
+# Check for updates in the system, If you are execute this command as root user then no need to mention sudo here
+log_messages "starting system updates"
+sudo apt-get update && sudo apt upgrade || echo "Failed to update the system " && exit 1
+log_messages "system update finished
+# Check for the temporary file and remove the files which are older than 7 days
+log_messages "Start clearing temporary files"
+temp_files=("/temp" "/var/temp")
+for ((i=0 ; i< ${#temp_files[*]}; i++)) 
+do
+  if [[ -d $i ]]
+  then 
+  find $i -type f -mtime $days -exec rm -f {} \; -print | while read -r file: do log_messages "Removed files $file" done
+  find $i -type d -empty -exec rm -r {} \; -print | while read -r dir; do log_messages "Removed Files $dir" done
+  else
+  log_messages "No temporary files and directory available" && exit 1
+  fi
+done
+echo "temporary files removed sucessfully"
+log_messages "Temporary files are removed sucessfully"
+#show infomation about disk uses and memory uses
+#memory uses
+free -ht
+log_messages "Display Available memory information"
+#shows disk usuages
+df -ha 
+log_messages "Display Available FileSystem information"
