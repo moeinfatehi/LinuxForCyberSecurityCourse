@@ -1,0 +1,14 @@
+#!/bin/bash
+#Edit this path where you placed your backup script
+path=/home/kali/Documents
+#Schedule a cron job to run a backup script at 2 AM everyday(present in my Documents folder) -> for this edit the crontab file
+#I had set the cron jobs for the current user
+echo "0 2 * * *  /$path/backup_script.sh" | crontab -
+#You can also manually enter this command into crontab -e editor
+#Schedule a cron job to update the system packages everyday at 3 AM by adding this command in the crontab file
+echo "0 3 * * * sudo apt-get update && sudo apt-get upgrade" | crontab -
+#Listing all the cronjobs for the current user
+crontab -l
+#Remove the 2nd cronjob only i.e to update the system
+crontab -l | grep -v "sudo apt-get update" | crontab -
+#Save this file as cron_jobs.sh and execute it as bash cron_jobs.sh

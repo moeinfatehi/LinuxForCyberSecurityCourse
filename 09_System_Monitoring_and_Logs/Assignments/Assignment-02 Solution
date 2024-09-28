@@ -1,0 +1,34 @@
+#!/bin/bash
+#To log all authentication events (auth,authpriv.*) to a custom log file named /var/log/auth_custom.log with rsyslog
+#First install the rsyslog tool if not installed (but it was default available in most linux distributions)
+sudo apt-get update
+sudo apt-get install rsyslog
+#Change the configuration of rsyslog.conf file
+#Check for the existing rule
+id=$(grep "auth,authpriv\.\*" /etc/rsyslog.conf | awk '{print}') 
+if [[ $? == 0 ]]
+then
+  sudo sed -i 's|auth,authpriv.* /var/log/* |auth,authpriv.* /var/log/auth_custom.log |g' /etc/rsyslog.conf
+else
+  echo "auth,authpriv.* /var/log/auth_costom.log" | tee -a sudo /etc/rsyslog.conf
+fi
+#Set a logrotate configuration that rotates /var/log/auth_custom.log daily, keeps 7 days of logs and compresses old logs
+#For this create a file in the /etc/logrotate.d (contain the logrotate configuration file for differect log files) 
+cd /etc/logrotate.d
+touch auth_custom
+#Configure the auth_custom to rotate the logs of auth_custom.log file
+id="/var/log/auth_custom.log{
+  missingok
+  notifempty
+  daily
+  rotate 7
+  compress
+}"
+echo $id | tee -a sudo /etc/logrotate.d/auth_custom
+#To restart the logrotate services
+sudo systemctl start logrotate
+#To test the logrotate configuration using logrotate debug option and store the output in a file
+logrotate -d /etc/logrotate.conf > test.txt
+#To manually start the logrotate process
+logrotate /etc/logrotate.conf
+#save this file as log_management.sh 

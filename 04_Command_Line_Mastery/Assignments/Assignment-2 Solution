@@ -1,0 +1,17 @@
+#!/bin/bash
+#Replace path with your current working home directory
+path=/home/kali
+#It defines to look for files in the current directory only
+depth=1
+#Check for the Backups folder if not exit create it
+if [[ ! -d $path/Backups ]]
+then 
+  mkdir $path/Backups
+fi
+#Searching for all .txt file in the user's Documents directory and copy and compress it to the backups folder along with the each log history in the backups.log file
+for item in $(find -maxdepth $depth -iname \*.txt -type f)
+do 
+  cp $path/Documents $path/Backups || exit 1
+  gzip $path/Backups/$(basename "$path")
+  echo "$(date "+%Y-%m-%d %H:%M:%S") archieving file $item --> $path/Backups" >> $path/backups.log
+done

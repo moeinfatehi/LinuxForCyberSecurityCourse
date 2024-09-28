@@ -1,0 +1,29 @@
+#First check for the iptables command is installed on your vm because in nowdays iptables are replaced by the nftables 
+#but available for the compatible purpose So to check iptable are installed
+iptables -t
+#if not installed then install it by along with the iptables-persistent because the default iptables.service are unavailale
+sudo apt-get install iptables iptables-persistent netfilter-persistent
+#Also if your vm has nftables or firewalld enable, then it cause the conflict with the iptables so disable them
+systemctl status nftables
+#If active
+systemctl stop nftables
+systemctl disable nftables
+systemctl status nftables
+#similar for firewalld
+systemctl status firewalld
+if active
+systemctl stop firewalld 
+systemctl disable firewalld
+systemctl status firewalld
+#Now define the firewall rules for the filter table for incoming input chain
+#Accept the SSH connection from any destination
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+#Accept the Htttp packet from any destination
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+#Drop any other type of packet by setting the default policy to drop 
+iptables -P INPUT DROP
+#List the iptables rules
+iptables -P
+#To make these rules persistent after the reboot
+netfilter-persistent save
+#The rules will be saved to /etc/iptables/rules.v4

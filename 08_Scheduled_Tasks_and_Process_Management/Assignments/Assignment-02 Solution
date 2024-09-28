@@ -1,0 +1,11 @@
+#!/bin/bash
+#Edit the path where you create your maintenance.sh script
+path=/home/kali/test/maintenance.sh
+#Schedule a job to run this maintenance script at 5 PM today
+echo "$path" | at 17:00 
+#To list all at pending jobs
+atq
+#Remove the schedule maintenance task
+id=$(atq | grep "17:00" | awk '{print $1}')
+atrm $id
+#Save this file with at_task.sh 

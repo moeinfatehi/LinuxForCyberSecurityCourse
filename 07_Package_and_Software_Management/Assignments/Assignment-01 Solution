@@ -1,0 +1,17 @@
+#!/bin/bash
+#Install package curl and git using apt(advanced package tool) in debian based systems
+#Firstly update the package list with latest packages version and then install curl and git together
+sudo apt-get update
+sudo apt-get install curl git
+#Remove the curl package while keeping its configuration files
+sudo apt-get remove curl
+#Update all the existing package and software with their latest version
+sudo apt-get update
+sudo apt-get upgrade
+#Add the deadsnake/ppa repository and install python 3.9
+sudo add-apt-repository deadsnake/ppa
+sudo apt-get update
+sudo apt-get install python-3.9
+#List all currently configured repositories
+grep '^dev' /etc/apt/souces.list /etc/apt/sources.list.d/*
+# Now save this file as apt_management.sh and run -> bash apt_management.sh

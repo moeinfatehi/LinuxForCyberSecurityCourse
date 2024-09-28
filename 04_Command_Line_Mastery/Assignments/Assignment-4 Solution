@@ -1,0 +1,15 @@
+#!/bin/bash
+#check for the root user otherwise don't execute the script
+if [[ $UID -ne 0 ]] 
+then
+echo "Root Previlage required to execute this script" && exit 1
+else 
+echo "You are logged as root user :$(whoami)"
+fi
+# To execute this script 
+#1.You saved this script with .sh extension.
+#2.You provide the execute permission to this script
+chmod u+x file_name
+#execute this script using any of the command
+bash file_name.sh
+./file_name.sh

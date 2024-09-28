@@ -1,0 +1,50 @@
+#For establishing an ssh connection we have to ensure that Openssh-server is installed on the Server and ssh-client is installed 
+#on the host to from which we want an SSH connection
+#OpenSSH tool is an open source and free which implement the ssh protocol.
+#By default the openssh-client i.e ssh adn openssh-server i.e sshd is preinstalled in the linux server and also on the window 10 and
+#above version
+#if not install them, For linux machine/server
+sudo apt-get install Openssh-client openssh-server
+#for windows machine/server
+Open settings>apps> manage optional features> add features> openssh client and openssh server. 
+
+# Now check for the ssh service should be in running state on the server
+#for linux server/machine
+systemctl status ssh
+systemctl start ssh
+#for windows server/machine (run in windows powershell as an adminstrator)
+Get-Service -Name ssh
+Start-Service -Name ssh
+#Now lets estalise the ssh connection using key pair(More secure)
+#step -> 1.For ssh connection we have to generate the Private-Public key-pair at the host machine using command-
+ssh-keygen 
+#store the keys at default location and without passphrase( It is used to encrypt the keys being generated) set them as empty for now
+#Now we have a folder in our home directory -> .ssh ,This folder contain the key pair
+#id_rsa. -> private key
+#id_rsa.pub -> public key
+
+#Step -> 2.Now copy the public key to the server
+#For linux host run this command with your server hostname in place of Username and your server ipaddress
+ssh-copy-id username@192.168.11.130
+with password
+#for windows,run this command with your server hostname in place of Username and your server ipaddress
+scp ~/home/User/Username/.ssh/id_rsa.pub server_hostname@192.168.11.130 ~/temp_id_rsa.pub
+#then,Estabilise a ssh connection using password
+ssh username@192.168.11.130 
+password 
+#At last,Now append the public key file to .ssh/authrized_keys
+cat ~/temp_id_rsa.pub >> ~/.ssh/authorized keys
+
+#Now set the permission to .ssh folder to 700 and 600 to authorized_keys
+chmod 700 /.ssh $$ chmod 600 ./.ssh/authorized_keys
+#Step -> 3.At last we are ready to go. Estabilise ssh with key pair
+ssh username@192.168.11.130
+#Now we had to disable the ssh connection using password -> for this at your server goto /etc/ssh and update the sshd_config file
+cd /etc/ssh
+ls
+vi sshd_config
+add an entry-> PasswordAuthentication no
+#Also ensure that PubkeyAuthentication yes
+#Now restart the ssh service
+sudo systemctl restart ssh
+echo We establised a ssh connection with password authentication disable
